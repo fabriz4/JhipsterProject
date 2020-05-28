@@ -20,6 +20,8 @@ import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.Collection;
 
+//è una prova per Fabrizio
+
 @SpringBootApplication
 @EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class})
 public class TvBookMarksApp implements InitializingBean {
