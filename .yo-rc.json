@@ -1,0 +1,37 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "org.tvbookmarks.app"
+    },
+    "jhipsterVersion": "6.1.2",
+    "applicationType": "monolith",
+    "baseName": "TvBookMarks",
+    "packageName": "org.tvbookmarks.app",
+    "packageFolder": "org/tvbookmarks/app",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ZjQyZDE1MjIzNjk2ODU0MGUyMmQ1MWYxMzI3N2VhN2VkMjFlMTlmMWFjZjk4NWY3N2Q4NjgxZDA3ZjQ1YzY5NTA0YjdjNzU2MzMwODIxNDljNzJhNzBlN2VhOGIzNjY4MzNiYTIxMDViMDg3Y2EyZjhjYTg5NWE2YTNlNGY4OTI=",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false
+  }
+}
