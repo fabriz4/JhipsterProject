@@ -1,5 +1,7 @@
 package org.tvbookmarks.app;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 import org.tvbookmarks.app.config.ApplicationProperties;
 import org.tvbookmarks.app.config.DefaultProfileUtil;
 
@@ -96,5 +98,9 @@ public class TvBookMarksApp implements InitializingBean {
             serverPort,
             contextPath,
             env.getActiveProfiles());
+    }
+    @Bean
+    public RestTemplate getRestTemplate() {
+        return new RestTemplate();
     }
 }
