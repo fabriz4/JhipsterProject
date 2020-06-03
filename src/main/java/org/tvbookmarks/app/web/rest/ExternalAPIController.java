@@ -27,9 +27,9 @@ public class ExternalAPIController {
     private SerieTVservice service;
 
 @GetMapping("/search")
-public ResponseEntity<JSONObject> findTV(@RequestParam String name){
+public ResponseEntity<String> findTV(@RequestParam String name){
 
-    JSONObject response=service.findSerieTV(name);
+    String response=service.findSerieTV(name);
     return ok(response);
 
 }

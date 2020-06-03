@@ -2,6 +2,7 @@ package org.tvbookmarks.app.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 
 import org.springframework.http.HttpEntity;
@@ -25,18 +26,31 @@ public class SerieTVservice {
     private String BaseURL;
     private String ApiKey;
 
-    public SerieTVservice(ApplicationProperties properties) {
+    public SerieTVservice(ApplicationProperties properties){
     this.properties=properties;
     ApiKey=properties.getDbmovie().getApiKey();
     BaseURL=properties.getDbmovie().getBaseURL();
     }
 
-    public JSONObject findSerieTV(String name){
-        String path="search/tv?query=";
+    public String findSerieTV(String name){
+        String result= null;
+
+        try {
+            result=callDBMovieAPI(name);
+
+        }catch (Exception e){
+            log.info("servizio esterno exception");
+            return null;
+        }
+        
+        return result;
+    }
+    private String callDBMovieAPI(String name){
+        String path="search/tv?api_key="+ ApiKey +"&query=";
         HttpHeaders headers = new HttpHeaders();
         RestTemplate template=new RestTemplate();
-        ResponseEntity<JSONObject> responseEntity = template.exchange(BaseURL + path + name, HttpMethod.GET,
-            new HttpEntity<>(headers), JSONObject.class);
+        ResponseEntity<String> responseEntity = template.exchange(BaseURL + path + name, HttpMethod.GET,
+            new HttpEntity<>(headers), String.class);
         return responseEntity.getBody();
     }
 }
