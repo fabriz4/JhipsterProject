@@ -3,6 +3,7 @@ package org.tvbookmarks.app.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
+import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 
 import org.springframework.http.HttpEntity;
@@ -42,7 +43,7 @@ public class SerieTVservice {
             log.info("servizio esterno exception");
             return null;
         }
-        
+
         return result;
     }
     private String callDBMovieAPI(String name){
@@ -51,6 +52,20 @@ public class SerieTVservice {
         RestTemplate template=new RestTemplate();
         ResponseEntity<String> responseEntity = template.exchange(BaseURL + path + name, HttpMethod.GET,
             new HttpEntity<>(headers), String.class);
-        return responseEntity.getBody();
+        String Json = callJsonObject(responseEntity.getBody()).toString();
+        return Json;
+    }
+
+    private JSONObject callJsonObject(String response) {
+        log.info("errore "+ response);
+
+        try {
+            JSONObject resultJSON = new JSONObject(response);
+            JSONObject results = new JSONObject(resultJSON.getString("results"));
+            return results;
+        } catch (JSONException e) {
+            log.debug("Json exception!");
+            return null;
+        }
     }
 }

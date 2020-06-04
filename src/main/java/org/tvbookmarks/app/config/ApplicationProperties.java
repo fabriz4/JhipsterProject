@@ -21,6 +21,7 @@ public class ApplicationProperties {
 
         private String apiKey="3166a07754e8519a061813405d20f2e7";
         private String baseURL="https://api.themoviedb.org/3/";
+        private String imgURL = "https://image.tmdb.org/t/p/w500/";
 
         public String getApiKey(){
             return apiKey;
@@ -29,6 +30,9 @@ public class ApplicationProperties {
             return baseURL;
         }
 
+        public String getImgURL(){
+            return imgURL;
+        }
     }
 
 
