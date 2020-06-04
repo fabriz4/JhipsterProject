@@ -52,19 +52,19 @@ public class SerieTVservice {
         RestTemplate template=new RestTemplate();
         ResponseEntity<String> responseEntity = template.exchange(BaseURL + path + name, HttpMethod.GET,
             new HttpEntity<>(headers), String.class);
-        String Json = callJsonObject(responseEntity.getBody()).toString();
+        String Json = responseConverter(responseEntity.getBody()).toString();
         return Json;
     }
 
-    private JSONObject callJsonObject(String response) {
+    private JSONArray responseConverter(String response) {
         log.info("errore "+ response);
 
         try {
             JSONObject resultJSON = new JSONObject(response);
-            JSONObject results = new JSONObject(resultJSON.getString("results"));
+            JSONArray results = new JSONArray(resultJSON.getString("results"));
             return results;
         } catch (JSONException e) {
-            log.debug("Json exception!");
+            log.debug("Json exception!:" + e);
             return null;
         }
     }
