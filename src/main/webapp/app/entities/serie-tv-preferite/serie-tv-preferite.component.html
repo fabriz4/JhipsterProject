@@ -1,0 +1,65 @@
+<div>
+    <h2 id="page-heading">
+        <span>Serie Tv Preferites</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-serie-tv-preferite" [routerLink]="['/serie-tv-preferite/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Serie Tv Preferite
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="serie_tv_preferites?.length === 0">
+        <span>No serie_tv_preferites found</span>
+    </div>
+    <div class="table-responsive" *ngIf="serie_tv_preferites?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="user"><span>User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="name"><span>Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="overview"><span>Overview</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="popularity"><span>Popularity</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="avg_vote"><span>Avg Vote</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let serie_tv_preferite of serie_tv_preferites ;trackBy: trackId">
+                <td><a [routerLink]="['/serie-tv-preferite', serie_tv_preferite.id, 'view' ]">{{serie_tv_preferite.id}}</a></td>
+                <td>{{serie_tv_preferite.user}}</td>
+                <td>{{serie_tv_preferite.name}}</td>
+                <td>{{serie_tv_preferite.overview}}</td>
+                <td>{{serie_tv_preferite.popularity}}</td>
+                <td>{{serie_tv_preferite.avg_vote}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/serie-tv-preferite', serie_tv_preferite.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/serie-tv-preferite', serie_tv_preferite.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'serie-tv-preferite', { outlets: { popup: serie_tv_preferite.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="serie_tv_preferite">
+            <h2><span>Serie Tv Preferite</span> {{serie_tv_preferite.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>User</span></dt>
+                <dd>
+                    <span>{{serie_tv_preferite.user}}</span>
+                </dd>
+                <dt><span>Name</span></dt>
+                <dd>
+                    <span>{{serie_tv_preferite.name}}</span>
+                </dd>
+                <dt><span>Overview</span></dt>
+                <dd>
+                    <span>{{serie_tv_preferite.overview}}</span>
+                </dd>
+                <dt><span>Popularity</span></dt>
+                <dd>
+                    <span>{{serie_tv_preferite.popularity}}</span>
+                </dd>
+                <dt><span>Avg Vote</span></dt>
+                <dd>
+                    <span>{{serie_tv_preferite.avg_vote}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/serie-tv-preferite', serie_tv_preferite.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
